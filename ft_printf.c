@@ -6,7 +6,7 @@
 /*   By: mmorente <mmorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 19:11:38 by mmorente          #+#    #+#             */
-/*   Updated: 2024/11/09 21:51:09 by mmorente         ###   ########.fr       */
+/*   Updated: 2024/11/10 12:52:22 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ void	format(va_list args, char *str)
 		ft_printstr(va_arg(args, char *));//print string
 	else if(*str == 'p')
 		TODO(); //print pointer in hexadecimal format (search)
-	else if(*str == 'd')
+	else if(*str == 'd' || *str == 'i')
 		TODO(); //Print a decimal number on base 10
-	else if(*str == 'i')
-		TODO();//Print a int number base 10
 	else if(*str == 'u')
 		TODO();//Print decimal number base 10
 	else if(*str == 'x')
