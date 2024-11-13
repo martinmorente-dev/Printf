@@ -6,7 +6,7 @@
 /*   By: mmorente <mmorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 19:11:38 by mmorente          #+#    #+#             */
-/*   Updated: 2024/11/10 12:52:22 by mmorente         ###   ########.fr       */
+/*   Updated: 2024/11/13 10:58:05 by martin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,23 @@
 
 void	format(va_list args, char *str)
 {
+	int	counter;
+
+	counter = 0;
 	if (*str == 'c')
 		ft_putchar(va_arg(args, int));//print character
 	else if (*str == 's')
 		ft_printstr(va_arg(args, char *));//print string
 	else if(*str == 'p')
-		TODO(); //print pointer in hexadecimal format (search)
+		// Print pointer;
 	else if(*str == 'd' || *str == 'i')
-		TODO(); //Print a decimal number on base 10
+		ft_printnb((va_arg(args, int), counter));
 	else if(*str == 'u')
-		TODO();//Print decimal number base 10
+		//Print decimal number base 10
 	else if(*str == 'x')
-		TODO();//Print hexadecimal number (base 16) in uppercase
+		//Print hexadecimal number (base 16) in uppercase
 	else if(*str == 'X')
-		TODO();//Print hexadecimal number (base 16) in lowercase
+		//Print hexadecimal number (base 16) in lowercase
 	else if(*str == '%')
 		ft_putchar(*str);// Print the percentage symbol
 }
