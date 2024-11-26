@@ -32,41 +32,57 @@ int     ft_printnb (int n,int counter)
         return (counter);
 }
 
-void    format(va_list args, char *str)
+int    format(va_list args, char *str)
 {
         int     counter;
 
         counter = 0;
        	if(*str == 'd' || *str == 'i')
-		ft_printnb((va_arg, int) counter); //Print a decimal number on base 10
+				ft_printnb((va_arg(args, int)),counter);
+		return (counter);
+ //Print a decimal number on base 10
+}
+
+int	ft_printstr(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		write(1,&str[i],1);
+		i++;
+	}
+	return(i);
 }
 
 int     ft_printf(char const *str, ...)
 {
-        va_list args;
+        va_list			args;
         int             checker;
 
         if (!str)
                 return (0);
         checker = 0;
-        va_start(args,*str);
+        va_start(args,str);
         while (*str)
         {
-                if (*str == '%')
-                {
-                        str++;
-                        checker += format(args, (char *)str);
-                }
-                else
-			print_str((char *)str);
-                va_end(args);
-                return (checker);
-        }
+             if (*str == '%')
+            {
+                str++;
+                checker += format(args, (char *)str);
+            }
+			else
+				checker += ft_printstr((char *)str);		
+			str++;
+		}
+		va_end(args);
+		return(checker);
 }
 
 int	main(void)
 {
-	ft_printf("Hola Luis tu edad es %d",18);
+	ft_printf("Hola Luis tu edad es %d",108);
 
 	return(0);
 }

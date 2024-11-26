@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmorente <mmorente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmorente <mmorente@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 19:11:38 by mmorente          #+#    #+#             */
-/*   Updated: 2024/11/13 10:58:05 by martin           ###   ########.fr       */
+/*   Updated: 2024/11/26 09:09:02 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	format(va_list args, char *str)
+int	format(va_list args, char *str)
 {
 	int	counter;
 
@@ -22,9 +22,9 @@ void	format(va_list args, char *str)
 	else if (*str == 's')
 		ft_printstr(va_arg(args, char *));//print string
 	else if(*str == 'p')
-		// Print pointer;
+		// Print pointer
 	else if(*str == 'd' || *str == 'i')
-		ft_printnb((va_arg(args, int), counter));
+		ft_printnb((va_arg(args, int)),counter);
 	else if(*str == 'u')
 		//Print decimal number base 10
 	else if(*str == 'x')
@@ -33,6 +33,7 @@ void	format(va_list args, char *str)
 		//Print hexadecimal number (base 16) in lowercase
 	else if(*str == '%')
 		ft_putchar(*str);// Print the percentage symbol
+	return (counter);
 }
 
 int	ft_printf(char const *str, ...)
