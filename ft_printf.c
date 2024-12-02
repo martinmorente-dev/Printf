@@ -12,49 +12,53 @@
 
 #include "ft_printf.h"
 
-int	format(va_list args, char *str)
+int format(va_list args, const char *str, int counter)
 {
-	int	counter;
+	int counter;
 
 	counter = 0;
 	if (*str == 'c')
-		ft_putchar(va_arg(args, int));//print character
+		ft_putchar(va_arg(args, int)); // print character
 	else if (*str == 's')
-		ft_printstr(va_arg(args, char *));//print string
-	else if(*str == 'p')
+		ft_printstr(va_arg(args, char *)); // print string
+	else if (*str == 'p')
 		// Print pointer
-	else if(*str == 'd' || *str == 'i')
-		ft_printnb((va_arg(args, int)),counter);
-	else if(*str == 'u')
-		//Print decimal number base 10
-	else if(*str == 'x')
-		//Print hexadecimal number (base 16) in uppercase
-	else if(*str == 'X')
-		//Print hexadecimal number (base 16) in lowercase
-	else if(*str == '%')
-		ft_putchar(*str);// Print the percentage symbol
+		else if (*str == 'd' || *str == 'i')
+			ft_printnb((va_arg(args, int)), counter);
+	else if (*str == 'u')
+		// Print decimal number base 10
+		else if (*str == 'x')
+			// Print hexadecimal number (base 16) in uppercase
+			else if (*str == 'X')
+			// Print hexadecimal number (base 16) in lowercase
+			else if (*str == '%')
+				ft_putchar(*str); // Print the percentage symbol
 	return (counter);
 }
 
-int	ft_printf(char const *str, ...)
+int ft_printf(const char *str, ...)
 {
-	va_list	args;
-	int		checker;
+	va_list args;
+	int checker = 0;
+	int i = 0;
 
 	if (!str)
 		return (0);
-	checker = 0;
-	va_start(args,*str);
-	while (*str)
+
+	va_start(args, str);
+	while (str[i])
 	{
-		if (*str == '%')
+		if (str[i] == '%')
 		{
-			str++;
-			checker += format(args, (char *)str);
+			i++;
+			checker += format(args, &str[i], checker);
+			i++;
 		}
 		else
-			print_str((char *)str);
-		va_end(args);
-		return (checker);
+		{
+			ft_printstr(str, &i, &checker);
+		}
 	}
+	va_end(args);
+	return (checker);
 }
