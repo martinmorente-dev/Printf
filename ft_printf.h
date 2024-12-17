@@ -17,9 +17,10 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
-int	ft_printf(char const *str, ...);
-void	ft_printstr(const char *str, int *i, int *counter);
-void	ft_printnb(int n, int counter);
-int	ft_putchar(char c);
+int		ft_printf(char const *str, ...);
+int		ft_printstr(const char *str, int counter);
+int		ft_printnb(int n, int counter);
+int		ft_putchar(char c);
+int		ft_print_dec_numb(unsigned int nb, int counter);
 
 #endif

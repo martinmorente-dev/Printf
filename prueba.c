@@ -1,54 +1,58 @@
 #include <unistd.h>
 #include <limits.h>
 #include <stdarg.h>
+#include <stdio.h>
 
-int ft_printnb(int n, int counter)
+int ft_print_dec_numb(unsigned int nb, int counter)
 {
-	if (n == INT_MIN)
+	if (nb < 10)
 	{
-		write(1, "-2147483648", 11);
-		counter = 11;
-		return (counter);
-	}
-	if (n < 0 && n != INT_MIN)
-	{
-		write(1, "-", 1);
-		counter++;
-		n = -n;
-	}
-	if (n < 10)
-	{
-		n = n + '0';
-		write(1, &n, 1);
+		nb = nb + '0';
+		write(1, &nb, 1);
 		counter++;
 	}
 	else
 	{
-		counter = ft_printnb(n / 10, counter);
-		n = (n % 10) + '0';
-		write(1, &n, 1);
+		counter = ft_print_dec_numb((nb / 10), counter);
+		nb = (nb % 10) + '0';
+		write(1, &nb, 1);
 		counter++;
 	}
 	return (counter);
 }
 
-int format(va_list args, const char *str, int counter)
+int ft_printstr(const char *str, int counter)
 {
-	if (*str == 'd' || *str == 'i')
+	int i = 0;
+
+	if (str == NULL)
 	{
-		counter = ft_printnb(va_arg(args, int), counter);
+		str = "(null)";
+	}
+
+	while (str[i] != '\0')
+	{
+		write(1, &str[i], 1);
+		i++;
+		counter++;
 	}
 	return (counter);
 }
 
-void ft_printstr(const char *str, int *i, int *counter)
+int ft_putchar(char c)
 {
-	while (str[*i] != '%' && str[*i] != '\0')
+	if (write(1, &c, 1) == -1)
+		return (-1);
+	return (1);
+}
+
+int format(va_list args, const char *str, int counter)
+{
+	if (*str == 's')
 	{
-		write(1, &str[*i], 1);
-		(*i)++;
-		(*counter)++;
+		counter = ft_printstr(va_arg(args, char *), counter);
 	}
+	return (counter);
 }
 
 int ft_printf(const char *str, ...)
@@ -66,13 +70,16 @@ int ft_printf(const char *str, ...)
 		if (str[i] == '%')
 		{
 			i++;
-			checker += format(args, &str[i], checker);
-			i++;
+			checker = format(args, &str[i], checker);
+			if (checker == -1)
+				return (-1);
 		}
 		else
 		{
-			ft_printstr(str, &i, &checker);
+			ft_putchar(str[i]);
+			checker++;
 		}
+		i++;
 	}
 	va_end(args);
 	return (checker);
@@ -80,6 +87,9 @@ int ft_printf(const char *str, ...)
 
 int main(void)
 {
-	ft_printf("Hola tu edad es %d", 108);
-	return (0);
+    int result = ft_printf("%s", "Hola mundo");
+
+    printf("Número de caracteres impresos: %d", result);
+    
+    return (0);
 }

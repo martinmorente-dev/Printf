@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmorente <mmorente@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: mmorente <mmorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 19:11:38 by mmorente          #+#    #+#             */
-/*   Updated: 2024/12/04 11:00:06 by mmorente         ###   ########.fr       */
+/*   Updated: 2024/12/17 13:09:55 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int format(va_list args, const char *str, int counter)
 	}
 	else if (*str == 's')
 	{
-		counter = ft_printstr(va_arg(args, char *)); // print string
+		counter = ft_printstr(va_arg(args, char *), counter);
 	}
 	else if (*str == 'p')
 	{
@@ -35,7 +35,7 @@ int format(va_list args, const char *str, int counter)
 	}
 	else if (*str == 'u')
 	{
-		// Print decimal number base 10
+		counter = ft_print_dec_numb((va_arg(args,unsigned int)),counter);
 	}
 	else if (*str == 'x')
 	{
@@ -67,13 +67,16 @@ int ft_printf(const char *str, ...)
 		if (str[i] == '%')
 		{
 			i++;
-			checker += format(args, &str[i], checker);
-			i++;
+			checker = format(args, &str[i], checker);
+			if (checker == -1)
+				return (-1);
 		}
 		else
 		{
-			ft_printstr(str, &i, &checker);
+			ft_putchar(str[i]);
+			checker++;
 		}
+		i++;
 	}
 	va_end(args);
 	return (checker);
