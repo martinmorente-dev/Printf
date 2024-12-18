@@ -2,6 +2,7 @@
 #include <limits.h>
 #include <stdarg.h>
 #include <stdio.h>
+#include <stdint.h>
 
 int ft_print_dec_numb(unsigned int nb, int counter)
 {
@@ -16,6 +17,25 @@ int ft_print_dec_numb(unsigned int nb, int counter)
 		counter = ft_print_dec_numb((nb / 10), counter);
 		nb = (nb % 10) + '0';
 		write(1, &nb, 1);
+		counter++;
+	}
+	return (counter);
+}
+
+int ft_print_ptr (unsigned long long mem_dir, int counter)
+{
+	char	hex[] = "123456789abcdef";
+
+	if (!mem_dir)
+		return (-1);
+	
+	if (mem_dir > 16)
+	{
+		ft_print_ptr(mem_dir % 16, counter);
+	}
+	else
+	{
+		write(1,&hex[mem_dir],1);
 		counter++;
 	}
 	return (counter);
@@ -48,9 +68,9 @@ int ft_putchar(char c)
 
 int format(va_list args, const char *str, int counter)
 {
-	if (*str == 's')
+	if (*str == 'p')
 	{
-		counter = ft_printstr(va_arg(args, char *), counter);
+		counter = ft_print_ptr(va_arg(args, unsigned long long ),counter);
 	}
 	return (counter);
 }
@@ -59,27 +79,26 @@ int ft_printf(const char *str, ...)
 {
 	va_list args;
 	int checker = 0;
-	int i = 0;
 
 	if (!str)
 		return (0);
 
 	va_start(args, str);
-	while (str[i])
+	while (*str)
 	{
-		if (str[i] == '%')
+		if (*str == '%')
 		{
-			i++;
-			checker = format(args, &str[i], checker);
+			str++;
+			checker = format(args, str, checker);
 			if (checker == -1)
 				return (-1);
 		}
 		else
 		{
-			ft_putchar(str[i]);
+			ft_putchar(*str);
 			checker++;
 		}
-		i++;
+		str++;
 	}
 	va_end(args);
 	return (checker);
@@ -87,9 +106,14 @@ int ft_printf(const char *str, ...)
 
 int main(void)
 {
-    int result = ft_printf("%s", "Hola mundo");
+	char	*a;
+	char	b;
 
-    printf("Número de caracteres impresos: %d", result);
-    
+	b = 'a';
+	a = &b;
+
+	ft_printf("%p",a);
+	write(1,"\n",1);
+	printf("%p",a);
     return (0);
-}
+}	

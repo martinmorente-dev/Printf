@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printnb.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmorente <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mmorente <mmorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 12:52:41 by mmorente          #+#    #+#             */
-/*   Updated: 2024/11/13 10:51:38 by martin           ###   ########.fr       */
+/*   Updated: 2024/12/18 13:10:12 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_printnb(int n, int counter)
+int	ft_printnb(int n, int counter)
 {
 	if (n == INT_MIN)
 	{
@@ -36,8 +36,7 @@ int ft_printnb(int n, int counter)
 	{
 		counter = ft_printnb((n / 10), counter);
 		n = (n % 10) + '0';
-		write(1, &n, 1);
-		counter++;
+		counter += write(1, &n, 1);
 	}
 	return (counter);
 }
