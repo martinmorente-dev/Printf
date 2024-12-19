@@ -6,7 +6,7 @@
 /*   By: mmorente <mmorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 10:12:22 by mmorente          #+#    #+#             */
-/*   Updated: 2024/12/18 13:08:50 by mmorente         ###   ########.fr       */
+/*   Updated: 2024/12/19 13:22:05 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 int	ft_print_ptr(unsigned long long mem_dir, int counter)
 {
-	char	*base;
-
 	if (!mem_dir)
-		return (-1);
+		return (ft_printstr("(nil)", counter));
 	counter += write(1, "0x", 2);
-	ft_print_hex(mem_dir, counter);
+	ft_print_hex(mem_dir);
 	return (counter);
 }

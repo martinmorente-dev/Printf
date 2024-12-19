@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printstr.c                                      :+:      :+:    :+:   */
+/*   ft_print_hex_may.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmorente <mmorente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 21:38:25 by mmorente          #+#    #+#             */
-/*   Updated: 2024/12/19 12:32:03 by mmorente         ###   ########.fr       */
+/*   Created: 2024/12/19 09:19:14 by mmorente          #+#    #+#             */
+/*   Updated: 2024/12/19 13:26:53 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printstr(const char *str, int counter)
+int	ft_print_hex_may(unsigned long long num_hex)
 {
-	int	i;
+	char				*base;
+	unsigned long long	counter;
 
-	i = 0;
-	if (!str)
-		str = "(null)";
-	while (str[i] != '\0')
+	counter = 0;
+	base = "0123456789ABCDEF";
+	if (!num_hex)
+		return (-1);
+	if (num_hex > 15)
 	{
-		write(1, &str[i], 1);
-		i++;
+		counter += ft_print_hex_may(num_hex / 16);
+		counter += ft_print_hex_may(num_hex % 16);
+	}
+	else
+	{
+		write(1, &base[num_hex], 1);
 		counter++;
 	}
 	return (counter);
