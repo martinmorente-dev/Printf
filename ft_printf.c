@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmorente <mmorente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmorente <mmorente@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 19:11:38 by mmorente          #+#    #+#             */
-/*   Updated: 2024/12/19 13:47:41 by mmorente         ###   ########.fr       */
+/*   Updated: 2024/12/24 12:40:24 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ int	ft_printf(const char *str, ...)
 		{
 			str++;
 			checker += format(args, str, checker);
-			if (checker == -1)
-				return (-1);
 		}
 		else
 			leng += ft_putchar(*str);

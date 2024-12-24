@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmorente <mmorente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmorente <mmorente@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 12:07:14 by mmorente          #+#    #+#             */
-/*   Updated: 2024/12/19 13:26:50 by mmorente         ###   ########.fr       */
+/*   Updated: 2024/12/24 10:33:07 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ int	ft_print_hex(unsigned long long num_hex)
 	unsigned long long	counter;
 
 	base = "0123456789abcdef";
-
 	counter = 0;
-	if (num_hex < 0)
-		num_hex *= -1;
 	if (num_hex >= 16)
 	{
 		counter += ft_print_hex(num_hex / 16);

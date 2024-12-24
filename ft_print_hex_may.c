@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_hex_may.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmorente <mmorente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmorente <mmorente@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 09:19:14 by mmorente          #+#    #+#             */
-/*   Updated: 2024/12/19 13:26:53 by mmorente         ###   ########.fr       */
+/*   Updated: 2024/12/24 10:36:45 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_print_hex_may(unsigned long long num_hex)
 	counter = 0;
 	base = "0123456789ABCDEF";
 	if (!num_hex)
-		return (-1);
+		return (0);
 	if (num_hex > 15)
 	{
 		counter += ft_print_hex_may(num_hex / 16);

@@ -1,70 +1,71 @@
+#include <stdio.h>
+#include <limits.h>
 #include "ft_printf.h"
-#include <limits.h>  // Para LONG_MAX
 
-int	ft_print_hex(unsigned long num_hex)
+int	ft_printstr(const char *str, int counter)
 {
-    char				*base = "0123456789abcdef";
-    unsigned long long	counter = 0;
+	int	i;
 
-    if (num_hex >= 16)
-    {
-        counter += ft_print_hex(num_hex / 16);  // Recursión para dividir el número
-        counter += ft_print_hex(num_hex % 16);  // Imprimir el último dígito
-    }
-    else
-    {
-        write(1, &base[num_hex], 1);  // Imprimir el dígito hexadecimal
-        counter++;
-    }
-    return (counter);
+	i = 0;
+	if (!str)
+		str = "(null)";
+	while (str[i])
+	{
+		counter += write(1, &str[i], 1);
+		i++;
+	}
+	return (counter);
 }
-
 int	format(va_list args, const char *str, int counter)
 {
-    if (*str == 'x')
-        counter = ft_print_hex((va_arg(args, long)));  // Usa 'long' aquí para trabajar con LONG_MAX
-    return (counter);
+	
+	if (*str == 's')
+		counter = ft_printstr(va_arg(args, char *), counter);
+	return (counter);
+}
+
+int	ft_putchar(char c)
+{
+	if (write(1, &c, 1) == -1)
+		return (-1);
+	return (1);
 }
 
 int	ft_printf(const char *str, ...)
 {
-    va_list	args;
-    int		checker = 0;
-    int		leng = 0;
+	va_list	args;
+	int		checker;
+	int		leng;
 
-    if (!str)
-        return (0);
-
-    va_start(args, str);
-    while (*str)
-    {
-        if (*str == '%')
-        {
-            str++;
-            checker += format(args, str, checker);
-            if (checker == -1)
-                return (-1);
-        }
-        else
-            leng += ft_putchar(*str);
-        str++;
-    }
-    va_end(args);
-    return (checker + leng);
+	checker = 0;
+	leng = 0;
+	if (!str)
+		return (0);
+	va_start(args, str);
+	while (*str)
+	{
+		if (*str == '%')
+		{
+			str++;
+			checker += format(args, str, checker);
+			if (checker == -1)
+				return (-1);
+		}
+		else
+			leng += ft_putchar(*str);
+		str++;
+	}
+	va_end(args);
+	return (checker + leng);
 }
 
 
-
-int	ft_putchar(char c)
+int main(void)
 {
-    if (write(1, &c, 1) == -1)
-        return (-1);
-    return (1);
-}
+   int result = 0;
 
-int	main(void)
-{
-    ft_printf(" %x ", LONG_MAX);  // Usa LONG_MAX directamente, no hace falta cast
-    write(1,"\0",1);
-    return (0);
+	result = ft_printf(" %s %s\n ", " - ", "");
+	printf(" %s %s\n ", " - ", "");
+    printf("%d",result);
+	return 0;
 }
