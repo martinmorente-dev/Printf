@@ -2,6 +2,16 @@
 #include <limits.h>
 #include "ft_printf.h"
 
+int	ft_print_ptr(unsigned long long mem_dir, int counter)
+{
+	if (!mem_dir)
+		return (ft_printstr("(nil)", 1));
+	counter += write(1, "0x", 2);
+	counter += ft_print_hex(mem_dir);
+	return (counter);
+}
+
+
 int	ft_printstr(const char *str, int counter)
 {
 	int	i;
@@ -16,11 +26,32 @@ int	ft_printstr(const char *str, int counter)
 	}
 	return (counter);
 }
+
+int	ft_print_hex(unsigned long long num_hex)
+{
+	char				*base;
+	unsigned long long	counter;
+
+	base = "0123456789abcdef";
+	counter = 0;
+	if (num_hex >= 16)
+	{
+		counter += ft_print_hex(num_hex / 16);
+		counter += ft_print_hex(num_hex % 16);
+	}
+	else
+	{
+		write(1, &base[num_hex], 1);
+		counter++;
+	}
+	return (counter);
+}
+
 int	format(va_list args, const char *str, int counter)
 {
 	
-	if (*str == 's')
-		counter = ft_printstr(va_arg(args, char *), counter);
+	if (*str == 'p')
+		counter = ft_print_ptr(va_arg(args, unsigned long long), counter);
 	return (counter);
 }
 
@@ -62,10 +93,11 @@ int	ft_printf(const char *str, ...)
 
 int main(void)
 {
-   int result = 0;
+	int result = 0;
+	int real_res = 0;
 
-	result = ft_printf(" %s %s\n ", " - ", "");
-	printf(" %s %s\n ", " - ", "");
-    printf("%d",result);
+	result = ft_printf(" %p %p ", LONG_MIN, LONG_MAX);
+	printf("%d\n",result);
+	printf("%d\n",real_res);
 	return 0;
 }

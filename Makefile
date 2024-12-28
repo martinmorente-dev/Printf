@@ -6,7 +6,7 @@
 #    By: mmorente <mmorente@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/19 09:21:10 by mmorente          #+#    #+#              #
-#    Updated: 2024/12/24 10:27:46 by mmorente         ###   ########.fr        #
+#    Updated: 2024/12/28 12:33:06 by mmorente         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 LIB = ar rcs
 
-SRC = ft_print_dec_numb.c ft_print_hex_may.c ft_print_hex.c ft_print_ptr.c ft_printf.c \
+SRC = ft_print_uns_numb.c ft_print_hex_may.c ft_print_hex.c ft_print_ptr.c ft_printf.c \
 		ft_printnb.c ft_printstr.c ft_putchar.c
 
 INCLUDE = ft_printf.h

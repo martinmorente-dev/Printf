@@ -6,12 +6,11 @@
 /*   By: mmorente <mmorente@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 12:07:14 by mmorente          #+#    #+#             */
-/*   Updated: 2024/12/24 10:33:07 by mmorente         ###   ########.fr       */
+/*   Updated: 2024/12/28 12:18:47 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int	ft_print_hex(unsigned long long num_hex)
 {

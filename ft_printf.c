@@ -6,7 +6,7 @@
 /*   By: mmorente <mmorente@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 19:11:38 by mmorente          #+#    #+#             */
-/*   Updated: 2024/12/24 12:40:24 by mmorente         ###   ########.fr       */
+/*   Updated: 2024/12/28 12:59:06 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	format(va_list args, const char *str, int counter)
 	else if (*str == '%')
 		counter = ft_putchar(*str);
 	else if (*str == 'u')
-		counter = ft_print_dec_numb((va_arg(args, unsigned int)), counter);
+		counter = ft_print_uns_numb((va_arg(args, unsigned int)), counter);
 	else if (*str == 'x')
 		counter = ft_print_hex((va_arg(args, unsigned int)));
 	else if (*str == 'X')
@@ -52,7 +52,9 @@ int	ft_printf(const char *str, ...)
 			checker += format(args, str, checker);
 		}
 		else
+		{
 			leng += ft_putchar(*str);
+		}
 		str++;
 	}
 	va_end(args);
