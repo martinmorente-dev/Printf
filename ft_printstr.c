@@ -6,7 +6,7 @@
 /*   By: mmorente <mmorente@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 21:38:25 by mmorente          #+#    #+#             */
-/*   Updated: 2024/12/28 12:43:16 by mmorente         ###   ########.fr       */
+/*   Updated: 2024/12/28 18:09:47 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ int	ft_printstr(const char *str, int counter)
 		counter += write(1, &str[i], 1);
 		i++;
 	}
-	return (counter);
+	return (i);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmorente <mmorente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmorente <mmorente@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 21:34:56 by mmorente          #+#    #+#             */
-/*   Updated: 2024/12/18 13:13:33 by mmorente         ###   ########.fr       */
+/*   Updated: 2024/12/28 18:02:08 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	ft_putchar(char c)
 {
-	if (write(1, &c, 1) == -1)
-		return (-1);
+	write(1,&c,1);
 	return (1);
 }
