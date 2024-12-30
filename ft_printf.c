@@ -6,7 +6,7 @@
 /*   By: mmorente <mmorente@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 19:11:38 by mmorente          #+#    #+#             */
-/*   Updated: 2024/12/28 18:01:47 by mmorente         ###   ########.fr       */
+/*   Updated: 2024/12/30 11:33:49 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ int	format(va_list args, const char *str, int counter)
 	else if (*str == 's')
 		counter = ft_printstr(va_arg(args, char *), counter);
 	else if (*str == 'p')
-		counter = ft_print_ptr(va_arg(args, unsigned long long), counter);
+		counter = ft_print_ptr(va_arg(args, unsigned long long));
 	else if (*str == 'd' || *str == 'i')
-		counter = ft_printnb((va_arg(args, int)), counter);
+		counter = ft_printnb((va_arg(args, int)), 0);
 	else if (*str == '%')
 		counter = ft_putchar(*str);
 	else if (*str == 'u')
-		counter = ft_print_uns_numb((va_arg(args, unsigned int)), counter);
+		counter = ft_print_uns_numb((va_arg(args, unsigned int)), 0);
 	else if (*str == 'x')
 		counter = ft_print_hex((va_arg(args, unsigned int)));
 	else if (*str == 'X')

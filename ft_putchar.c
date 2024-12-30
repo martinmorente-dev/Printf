@@ -6,7 +6,7 @@
 /*   By: mmorente <mmorente@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 21:34:56 by mmorente          #+#    #+#             */
-/*   Updated: 2024/12/28 18:02:08 by mmorente         ###   ########.fr       */
+/*   Updated: 2024/12/30 11:34:43 by mmorente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int	ft_putchar(char c)
 {
-	write(1,&c,1);
+	write(1, &c, 1);
 	return (1);
 }

@@ -23,7 +23,7 @@ int		ft_printstr(const char *str, int counter);
 int		ft_printnb(int n, int counter);
 int		ft_putchar(char c);
 int		ft_print_uns_numb(unsigned int nb, int counter);
-int		ft_print_ptr(unsigned long long mem_dir, int counter);
+int		ft_print_ptr(unsigned long long mem_dir);
 int		ft_print_hex(unsigned long long num_hex);
 int		ft_print_hex_may(unsigned long long num_hex);
 
